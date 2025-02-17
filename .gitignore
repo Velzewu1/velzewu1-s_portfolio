@@ -1,0 +1,33 @@
+# Node.js dependencies
+node_modules/
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+
+# Vite build output (dist is needed for GitHub Pages, so we include a workaround)
+dist/
+!.nojekyll  # GitHub Pages needs this to handle SPA routing correctly
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor/OS-specific files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Cache and temp files
+.cache/
+.tmp/
+*.log
