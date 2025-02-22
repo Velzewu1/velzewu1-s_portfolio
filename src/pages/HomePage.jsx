@@ -8,10 +8,11 @@ const HomePage = () => {
   const navigate = useNavigate();
   return (
     <div className="w-screen min-h-screen bg-[#1A0A2E] p-6">
-      <h1 className="text-3xl font-bold mb-6 text-center text-cyan-300 drop-shadow-[0_0_8px_#0ff] font-mono uppercase">My Portfolio</h1>
-      <div className="flex flex-row justify-between items-start w-full mx-auto flex-nowrap space-x-4">
-
-        <div className="flex-shrink-0 bg-[#2A1240] text-gray-200 p-4 rounded-xl shadow-md shadow-purple-900 w-64 relative before:content-[''] before:absolute before:w-full before:h-full before:bg-[linear-gradient(rgba(0,0,0,0)_50%,rgba(0,0,0,0.2)_50%)] before:bg-[size:100%_4px] before:opacity-50 w-64 transition-all duration-300 hover:w-80">
+      <h1 className="text-3xl font-bold mb-6 text-center text-cyan-300 drop-shadow-[0_0_8px_#0ff] font-mono uppercase">
+        My Portfolio
+      </h1>
+      <div className="flex flex-row justify-around items-start w-full mx-auto flex-nowrap space-x-4">
+        <div className="flex-shrink-0 bg-[#2A1240] text-gray-200 p-4 rounded-xl shadow-md shadow-purple-900 w-80 relative before:content-[''] before:absolute before:inset-0 before:w-full before:h-full before:bg-[linear-gradient(rgba(0,0,0,0)_50%,rgba(0,0,0,0.2)_50%)] before:bg-[size:100%_4px] before:opacity-50 transition-all duration-300 hover:w-96">
           <h2 className="text-xl font-semibold mb-2 text-center">About Me</h2>
           <AboutMe />
           <button
@@ -21,8 +22,7 @@ const HomePage = () => {
             Learn More
           </button>
         </div>
-
-        <div className="flex-shrink-0 bg-[#2A1240] text-gray-200 p-4 rounded-xl shadow-md shadow-purple-900 w-128 relative before:content-[''] before:absolute before:w-full before:h-full before:bg-[linear-gradient(rgba(0,0,0,0)_50%,rgba(0,0,0,0.2)_50%)] before:bg-[size:100%_4px] before:opacity-50">
+        <div className="flex-shrink-0 bg-[#2A1240] text-gray-200 p-4 rounded-xl shadow-md shadow-purple-900 w-128 relative before:content-[''] before:absolute before:inset-0 before:w-full before:h-full before:bg-[linear-gradient(rgba(0,0,0,0)_50%,rgba(0,0,0,0.2)_50%)] before:bg-[size:100%_4px] before:opacity-50">
           <h2 className="text-xl font-semibold mb-2 text-center">Game</h2>
           <GameScene />
           <button
@@ -32,8 +32,7 @@ const HomePage = () => {
             See Full Game
           </button>
         </div>
-        
-        <div className="flex-shrink-0 bg-[#2A1240] text-gray-200 p-4 rounded-xl shadow-md shadow-purple-900 w-64 relative before:content-[''] before:absolute before:w-full before:h-full before:bg-[linear-gradient(rgba(0,0,0,0)_50%,rgba(0,0,0,0.2)_50%)] before:bg-[size:100%_4px] before:opacity-50">
+        <div className="flex-shrink-0 bg-[#2A1240] text-gray-200 p-4 rounded-xl shadow-md shadow-purple-900 w-80 relative before:content-[''] before:absolute before:inset-0 before:w-full before:h-full before:bg-[linear-gradient(rgba(0,0,0,0)_50%,rgba(0,0,0,0.2)_50%)] before:bg-[size:100%_4px] before:opacity-50">
           <h2 className="text-xl font-semibold mb-2 text-center">Who Am I</h2>
           <WhoAmI />
           <button
