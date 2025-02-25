@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import HomePage from './pages/HomePage';
 import GamePage from './pages/GamePage';
 import AboutPage from './pages/AboutPage';
-import WhoAmIPage from './pages/WhoAmIPage';
+import WhoAmIPage from './pages/MySkillsPage';
 import ContactPage from './pages/ContactPage';
 import Banana3d from './components/banana3d';
 
@@ -60,7 +60,7 @@ function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/game" element={<GamePage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/whoami" element={<WhoAmIPage />} />
+        <Route path="/myskills" element={<WhoAmIPage />} />
         <Route path="/contact" element={<ContactPage />} />
       </Routes>
     </Router>

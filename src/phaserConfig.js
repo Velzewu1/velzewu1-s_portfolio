@@ -85,6 +85,7 @@ function create() {
   });
 
   this.cursors = this.input.keyboard.createCursorKeys();
+  this.stopFrame = 1;
 
   this.anims.create({
     key: "left",
@@ -107,12 +108,6 @@ function create() {
   this.anims.create({
     key: "down",
     frames: this.anims.generateFrameNumbers("player", { start: 0, end: 2 }),
-    frameRate: 10,
-    repeat: -1,
-  });
-  this.anims.create({
-    key: "idle",
-    frames: [{ key: "player", frame: 1 }],
     frameRate: 10,
     repeat: -1,
   });
@@ -141,14 +136,18 @@ function update() {
 
   if (velocityX < 0) {
     this.player.anims.play("left", true);
+    this.stopFrame = 4;
   } else if (velocityX > 0) {
     this.player.anims.play("right", true);
+    this.stopFrame = 7;
   } else if (velocityY < 0) {
     this.player.anims.play("up", true);
+    this.stopFrame = 10;
   } else if (velocityY > 0) {
     this.player.anims.play("down", true);
+    this.stopFrame = 1;
   } else {
-    this.player.anims.play("idle", true);
+    this.player.setFrame(this.stopFrame);
   }
 }
 export default phaserConfig;

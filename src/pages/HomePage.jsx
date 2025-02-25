@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import AboutMe from '../components/AboutMe';
 import GameScene from '../components/GameScene';
-import WhoAmI from '../components/WhoAmI';
+import MySkills from '../components/MySkills';
 import ParticleBackground from '../components/ParticleBackground';
 import SpaceObject from '../components/SpaceObjectManager';
 import TypingText from '../components/TypingText';
@@ -13,8 +13,7 @@ const HomePage = () => {
   const navigate = useNavigate();
   return (
     <div className={`relative font-retro filter contrast-[1.2] saturate-[1.3] brightness-[0.9] hue-rotate-[-5deg]
-      z-10 w-screen h-[200vh] bg-gradient-to-br from-[#1A0A2E] via-[#2A1240] to-[#4B1E77] p-6 overflow-hidden scrollbar-hide
-      ${beforeClasses}`}
+      z-10 w-screen h-[200vh] bg-gradient-to-br from-[#1A0A2E] via-[#2A1240] to-[#4B1E77] p-6 overflow-hidden scrollbar-hide`}
     >
       <ParticleBackground className="z-20 w-screen" />
 
@@ -28,15 +27,16 @@ const HomePage = () => {
       </span>
       
       <div className="flex flex-row justify-around items-start w-full mx-auto flex-wrap space-x-4">
-        <div className={`flex-shrink-0 bg-[#2A1240] text-gray-200 p-4 rounded-xl shadow-md shadow-purple-900 w-80 relative transition-all duration-300 hover:w-96 ${beforeClasses.replace("opacity-50", "opacity-50")}`}>
-          <h2 className="text-xl font-semibold mb-2 text-center">About Me</h2>
-          <AboutMe />
-          <button
-            onClick={() => navigate('/about')}
-            className="mt-4 w-full bg-pink-500 text-white px-3 py-2 rounded-xl hover:bg-pink-600 shadow-md border border-pink-500"
-          >
-            Learn More
-          </button>
+        <div className={`flex-shrink-0 bg-[#2A1240] text-gray-200 p-4 rounded-xl shadow-md shadow-purple-900 w-80 relative transition-all duration-300 hover:w-96 ${beforeClasses}`}>
+            <div className="max-h-[50vh] overflow-y-auto scrollbar-hide">
+              <AboutMe />
+            </div>
+            <button
+              onClick={() => navigate('/about')}
+              className="mt-4 w-full bg-pink-500 text-white px-3 py-2 rounded-xl hover:bg-pink-600 shadow-md border border-pink-500"
+            >
+              Learn More
+            </button>
         </div>
         
         <div className={`flex-shrink-0 bg-[#2A1240] text-gray-200 p-4 rounded-xl shadow-md shadow-purple-900 w-128 relative ${beforeClasses}`}>
@@ -51,10 +51,11 @@ const HomePage = () => {
         </div>
         
         <div className={`flex-shrink-0 bg-[#2A1240] text-gray-200 p-4 rounded-xl shadow-md shadow-purple-900 w-80 relative transition-all duration-300 hover:w-96 ${beforeClasses}`}>
-          <h2 className="text-xl font-semibold mb-2 text-center">Who Am I</h2>
-          <WhoAmI />
+          <div className="max-h-[50vh] overflow-y-auto scrollbar-hide">
+            <MySkills />
+            </div>
           <button
-            onClick={() => navigate('/whoami')}
+            onClick={() => navigate('/myskills')}
             className="mt-4 w-full bg-purple-500 text-white px-3 py-2 rounded-xl hover:bg-purple-600 shadow-md border border-purple-500"
           >
             Social Info
