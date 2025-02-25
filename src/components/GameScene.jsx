@@ -1,3 +1,4 @@
+import React from "react";
 import Phaser from "phaser";
 import { useEffect, useRef } from "react";
 import phaserConfig from "../phaserConfig";

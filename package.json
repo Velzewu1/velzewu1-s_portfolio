@@ -10,10 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "gl-react": "^5.2.0",
+    "gl-react-dom": "^5.2.1",
     "phaser": "^3.88.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router-dom": "^7.2.0"
+    "react-router-dom": "^7.2.0",
+    "react-type-animation": "^3.2.0",
+    "three": "^0.173.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
