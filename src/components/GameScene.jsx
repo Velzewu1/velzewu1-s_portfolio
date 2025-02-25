@@ -24,7 +24,7 @@ const GameScene = ({ isResized }) => {
   useEffect(() => {
     if (isResized && gameRef.current) {
       console.log("Resizing game canvas...");
-      gameRef.current.scale.resize(window.innerWidth, window.innerHeight);
+      gameRef.current.scale.resize(window.innerWidth, 1080);
     }
   }, [isResized]);
 

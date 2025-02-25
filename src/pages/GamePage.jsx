@@ -8,7 +8,7 @@ const GamePage = () => {
   const beforeClass = "before:content-[''] before:absolute before:inset-0 before:w-full before:h-full before:bg-[linear-gradient(rgba(0,0,0,0)_50%,rgba(0,0,0,0.5)_50%)] before:bg-[size:100%_4px] before:opacity-50 before:pointer-events-none";
 
   return (
-    <div className={"relative w-screen h-screen" + beforeClass}>
+    <div className={"relative w-screen h-screen filter contrast-[1.2] saturate-[1.3] brightness-[0.9] hue-rotate-[-5deg]" + beforeClass}>
       <GameScene isResized={isResized} />
       <span
         onClick={() => navigate("/home")}
