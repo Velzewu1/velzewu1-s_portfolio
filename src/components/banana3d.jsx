@@ -36,7 +36,7 @@ const Banana3d = () => {
 
     const loader = new GLTFLoader();
     loader.load(
-      '/models/banana.glb', 
+      'assets/models/banana.glb', 
       (gltf) => {
         const banana = gltf.scene;
         banana.scale.set(0.5, 0.5, 0.5);
@@ -71,7 +71,11 @@ const Banana3d = () => {
 
     return () => {
       window.removeEventListener('resize', onWindowResize);
-      mountRef.current.removeChild(renderer.domElement);
+      
+      if (mountRef.current && renderer.domElement) {
+        mountRef.current.removeChild(renderer.domElement);
+      }
+      
       renderer.dispose();
     };
   }, []);

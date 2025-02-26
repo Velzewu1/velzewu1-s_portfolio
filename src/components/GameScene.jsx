@@ -13,18 +13,24 @@ const GameScene = ({ isResized }) => {
     }
 
     return () => {
-      console.log("Destroying game instance");
+      console.log("Destroying game instance...");
       if (gameRef.current) {
-        gameRef.current.destroy(true);
+        if (gameRef.current.scene) {
+          gameRef.current.destroy(true);
+        }
         gameRef.current = null;
       }
     };
   }, []);
 
   useEffect(() => {
-    if (isResized && gameRef.current) {
+    if (isResized && gameRef.current?.scale) {
       console.log("Resizing game canvas...");
-      gameRef.current.scale.resize(window.innerWidth, 1080);
+      const resizeTimeout = setTimeout(() => {
+        gameRef.current.scale.resize(window.innerWidth, 1080);
+      }, 100);
+
+      return () => clearTimeout(resizeTimeout);
     }
   }, [isResized]);
 
