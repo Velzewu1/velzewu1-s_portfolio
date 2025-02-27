@@ -1,0 +1,14 @@
+{ "columns":17,
+ "image":"..\/..\/..\/..\/..\/..\/..\/Pictures\/game\/CosmicLegacy_PetricakeGamesPNG.png",
+ "imageheight":128,
+ "imagewidth":272,
+ "margin":0,
+ "name":"CosmicLegacy_PetricakeGamesPNG",
+ "spacing":0,
+ "tilecount":136,
+ "tiledversion":"1.11.2",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.10"
+}

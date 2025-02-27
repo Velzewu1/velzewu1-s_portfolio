@@ -4,6 +4,7 @@ const phaserConfig = {
   type: Phaser.AUTO,
   width: 800,
   height: 600,
+  pixelArt: true,
   parent: "game-container",
   physics: {
     default: "arcade",
@@ -20,113 +21,114 @@ const phaserConfig = {
 };
 
 function preload() {
-  const images = [
-    { key: "background", path: "/assets/background_large.jpg" },
-    { key: "foreground", path: "/assets/foreground.png" },
-    { key: "clickableObject", path: "assets/clickable.png" },
-  ];
+  this.load.spritesheet("player", "/assets/images/mainPlayer.png", {
+    frameWidth: 32,
+    frameHeight: 32
+  });
 
-  images.forEach(image => {
-    if (!this.textures.exists(image.key)) {
-      this.load.image(image.key, image.path);
+  this.load.tilemapTiledJSON("spaceMap", "assets/tilesets/spaceTiledMap.json");
+  this.load.image("cosmicTiles", "assets/tilesets/CosmicLegacy_PetricakeGamesPNG.png");
+  this.load.image("linkTiles", "assets/tilesets/linkObjects.png");
+}
+
+function create() {
+  const map = this.make.tilemap({ key: "spaceMap" });
+  const tilesets = {
+    cosmic: map.addTilesetImage("CosmicLegacy_PetricakeGamesPNG", "cosmicTiles"),
+    link: map.addTilesetImage("linkObjects", "linkTiles")
+  };
+
+  const layers = {
+    ground: map.createLayer("Ground", tilesets.cosmic, 0, 0),
+    walls: map.createLayer("Walls", tilesets.cosmic, 0, 0),
+    wallObjects: map.createLayer("WallObjects", tilesets.cosmic, 0, 0),
+    staticObjects: map.createLayer("StaticObjects", tilesets.cosmic, 0, 0),
+    linkTiles: map.createLayer("LinkTiles", tilesets.link, 0, 0)
+  };
+
+  [layers.walls, layers.staticObjects, layers.linkTiles].forEach(layer => {
+    layer.setCollisionByProperty({ collides: true });
+  });
+
+  this.player = this.physics.add.sprite(400, 300, "player").setOrigin(0, 0);
+  this.player.body.setSize(32, 32);
+
+  this.physics.add.collider(this.player, layers.walls);
+  this.physics.add.collider(this.player, layers.staticObjects);
+  this.physics.add.collider(this.player, layers.linkTiles);
+
+  layers.linkTiles.forEachTile(tile => {
+    if (tile.properties?.URL) {
+      const worldX = tile.getCenterX() * 2;
+      const worldY = tile.getCenterY() * 2;
+
+      const zone = this.add.zone(worldX, worldY, tile.width, tile.height).setOrigin(0.5).setInteractive();
+      
+      zone.on("pointerup", () => window.open(tile.properties.URL, "_blank"));
+      
+      const textLabel = this.add.text(worldX, worldY - tile.height / 2, tile.properties.name, {
+        fontSize: "16px",
+        fill: "#ffffff",
+        backgroundColor: "rgba(0, 0, 0, 0.5)"
+      }).setOrigin(0.5).setAlpha(0);
+
+      zone.on("pointerover", () => textLabel.setAlpha(1));
+      zone.on("pointerout", () => textLabel.setAlpha(0));
     }
   });
 
-  if (!this.textures.exists("player")) {
-    this.load.spritesheet("player", "/assets/player.png", {
-      frameWidth: 64,
-      frameHeight: 64
-    });
-  }
-}
-
-
-function create() {
-  this.background = this.add.tileSprite(0, 0, 10000, 10000, "background").setOrigin(0, 0);
-  this.foreground = this.add.tileSprite(0, 0, 10000, 10000, "foreground").setOrigin(0, 0);
-
-  this.player = this.physics.add.sprite(400, 300, "player").setOrigin(0, 0);
-
-  this.clickable = this.add.sprite(200, 200, "clickableObject").setInteractive();
-
   this.cursors = this.input.keyboard.createCursorKeys();
-  this.wasd = this.input.keyboard.addKeys("W,A,S,D");
+  this.stopFrame = 1;
 
-  this.anims.create({
-    key: "left",
-    frames: this.anims.generateFrameNumbers("player", { start: 56, end: 61 }),
-    frameRate: 10,
-    repeat: -1,
-  });
+  const animations = {
+    left: [3, 5],
+    right: [6, 8],
+    up: [9, 11],
+    down: [0, 2]
+  };
 
-  this.anims.create({
-    key: "right",
-    frames: this.anims.generateFrameNumbers("player", { start: 48, end: 53 }),
-    frameRate: 10,
-    repeat: -1,
-  });
-
-  this.anims.create({
-    key: "up",
-    frames: this.anims.generateFrameNumbers("player", { start: 40, end: 45 }),
-    frameRate: 10,
-    repeat: -1,
-  });
-
-  this.anims.create({
-    key: "down",
-    frames: this.anims.generateFrameNumbers("player", { start: 32, end: 37 }),
-    frameRate: 10,
-    repeat: -1,
-  });
-  this.anims.create({
-    key: "idle",
-    frames: [{ key: "player", frame: 0 }],
-    frameRate: 10,
-    repeat: -1,
-  });
+  Object.entries(animations).forEach(([key, frames]) =>
+    this.anims.create({
+      key,
+      frames: this.anims.generateFrameNumbers("player", { start: frames[0], end: frames[1] }),
+      frameRate: 10,
+      repeat: -1
+    })
+  );
 
   this.cameras.main.startFollow(this.player);
-  this.cameras.main.setBounds(0, 0, 10000, 10000);
+  this.cameras.main.setBounds(0, 0, map.widthInPixels * 2, map.heightInPixels * 2);
+  this.cameras.main.setZoom(2);
 
-  this.clickable.on('pointerover', () => {
-    console.log('Mouse is over the element!');
-    this.clickable.setTint(0xff0000);
-    this.input.setDefaultCursor("pointer");
-  });
-
-  this.clickable.on('pointerout', () => {
-    console.log('Mouse left the element!');
-    this.clickable.clearTint();
-    this.input.setDefaultCursor('default');
-  });
-
-  this.clickable.on('pointerdown', () => {
-    window.open('https://youtube.com', '_blank');
-  })
+  Object.values(layers).forEach(layer => layer.setScale(2));
 }
 
 function update() {
-  let velocityX = 0;
-  let velocityY = 0;
+  const velocity = { x: 0, y: 0 };
 
-  if (this.wasd.A.isDown || this.cursors.isDown) velocityX -= 160;
-  if (this.wasd.D.isDown || this.cursors.right.isDown) velocityX += 160;
-  if (this.wasd.W.isDown || this.cursors.up.isDown) velocityY -= 160;
-  if (this.wasd.S.isDown || this.cursors.down.isDown) velocityY += 160;
+  if (this.cursors.left.isDown) velocity.x = -160;
+  if (this.cursors.right.isDown) velocity.x = 160;
+  if (this.cursors.up.isDown) velocity.y = -160;
+  if (this.cursors.down.isDown) velocity.y = 160;
 
-  this.player.setVelocity(velocityX, velocityY);
+  if (velocity.x !== this.player.body.velocity.x || velocity.y !== this.player.body.velocity.y) {
+    this.player.setVelocity(velocity.x, velocity.y);
+  }
 
-  if (velocityX < 0) {
+  if (velocity.x < 0) {
     this.player.anims.play("left", true);
-  } else if (velocityX > 0) {
+    this.stopFrame = 4;
+  } else if (velocity.x > 0) {
     this.player.anims.play("right", true);
-  } else if (velocityY < 0) {
+    this.stopFrame = 7;
+  } else if (velocity.y < 0) {
     this.player.anims.play("up", true);
-  } else if (velocityY > 0) {
+    this.stopFrame = 10;
+  } else if (velocity.y > 0) {
     this.player.anims.play("down", true);
+    this.stopFrame = 1;
   } else {
-    this.player.anims.play("idle", true);
+    this.player.setFrame(this.stopFrame);
   }
 }
 
