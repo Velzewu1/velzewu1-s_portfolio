@@ -16,7 +16,7 @@ const AboutPage = () => {
       }
     >
       <span
-        onClick={() => navigate("/home")} // Use navigate to return
+        onClick={() => navigate("/home")}
         className="absolute top-11 right-9 rounded-xl transform -translate-x-1/2 z-30 px-6 py-3 text-white font-semibold hover:opacity-100 transition-colors shadow-[0_10px_20px_rgba(0,0,0,1)] opacity-80 cursor-pointer"
       >
         Go back

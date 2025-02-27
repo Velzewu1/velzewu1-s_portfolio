@@ -23,12 +23,10 @@ function ContactForm() {
   const baseInputClass =
     "w-full p-3 rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.1)] bg-cyan-100 bg-opacity-10 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:shadow-lg transition-all duration-300";
   
-  // Note the leading space added here.
   const textareaClass = baseInputClass + " resize-none p-6 overflow-hidden scrollbar-hide";
   
   const baseBackgroundClass = "relative w-screen h-screen font-retro";
-  
-  // Retro overlay with filters and scanline effect
+
   const retroOverlayClass =
     baseBackgroundClass +
     " filter contrast-[1.2] saturate-[1.3] brightness-[0.9] hue-rotate-[-5deg] z-10 w-screen h-[200vh] bg-gradient-to-br from-[#3a0f5e] via-[#1e0d33] to-black ";
@@ -36,7 +34,6 @@ function ContactForm() {
   const beforeClass =
     "before:content-[''] before:absolute before:inset-0 before:w-full before:h-full before:bg-[linear-gradient(rgba(0,0,0,0)_50%,rgba(0,0,0,0.5)_50%)] before:bg-[size:100%_4px] before:opacity-50 before:pointer-events-none";
   
-  // Web background with a darker gradient pattern from the same scheme
   const webBackgroundClass =
     "bg-gradient-to-br from-[#161027] via-[#1e0a2a] to-black opacity-100";
 
