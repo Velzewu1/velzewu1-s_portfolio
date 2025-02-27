@@ -9,19 +9,11 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-<<<<<<< HEAD
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist" 
-  },
-  "dependencies": {
-    "gh-pages": "^6.3.0",
-=======
     "vercel-build": "npm run build"
   },
   "dependencies": {
     "gl-react": "^5.2.0",
     "gl-react-dom": "^5.2.1",
->>>>>>> ed0fd1ef525220f7430872aa4a81397d1a18bd22
     "phaser": "^3.88.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
