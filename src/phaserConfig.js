@@ -51,7 +51,7 @@ function create() {
   });
 
   this.player = this.physics.add.sprite(400, 300, "player").setOrigin(0, 0);
-  this.player.body.setSize(32, 32);
+  this.player.body.setSize(8, 16);
 
   this.physics.add.collider(this.player, layers.walls);
   this.physics.add.collider(this.player, layers.staticObjects);

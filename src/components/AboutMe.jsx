@@ -45,7 +45,7 @@ const AboutMe = () => {
           </div>
         </div>
         <div className="flex items-center justify-center mt-6 space-x-6">
-          <a href="https://instagram.com/your_username" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/st.ang4r?igsh=cXU3cndzYXdsZWJv&utm_source=qr" target="_blank" rel="noopener noreferrer">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/768px-Instagram_icon.png" alt="Instagram" className="w-8 h-8 hover:scale-110 transition-transform" />
           </a>
           <a href="https://www.reddit.com/user/Velzewu1/" target="_blank" rel="noopener noreferrer">
