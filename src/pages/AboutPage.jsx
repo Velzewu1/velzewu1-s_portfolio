@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 import AboutMe from '../components/AboutMe';
 
 const AboutPage = () => {

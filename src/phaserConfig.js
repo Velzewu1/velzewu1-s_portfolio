@@ -102,7 +102,7 @@ function create() {
   });
 
   this.clickable.on('pointerdown', () => {
-    window.open('https://youtube.com', '_blank');
+    window.open('https://github.com/Velzewu1', '_blank');
   })
 }
 
