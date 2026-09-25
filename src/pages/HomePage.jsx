@@ -18,7 +18,7 @@ const HomePage = () => {
       <ParticleBackground className="z-20 w-screen" />
 
       <h1 className={`font-retro relative text-2xl font-semibold leading-normal mb-6 text-center text-cyan-300 drop-shadow-[0_0_8px_#0ff] uppercase ${beforeClasses}`}>
-        <span className='underline'>My name is Velzewu1 and I'm</span> <br />
+        <span className='underline'>My name is Ansar Samatov and I'm</span> <br />
         <TypingText />
       </h1>
 
